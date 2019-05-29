@@ -39,5 +39,5 @@ If you are using this code for your work, please cite:
   author={Bhattacharjee, Avishek and Banerjee, Samik and Das, Sukhendu},  
   booktitle = {The European Conference on Computer Vision (ECCV) Workshops},  
   month = {September},  
-  year = {2018}
+  year = {2018}<br />
 }
