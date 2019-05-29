@@ -34,7 +34,7 @@ python main.py
 If you are using this code for your work, please cite:
 <br />
 <br />
-@inproceedings{bhattacharjee2018posix,
+@inproceedings{bhattacharjee2018posix,<br />
   title={PosIX-GAN: Generating multiple poses using GAN for Pose-Invariant Face Recognition},  
   author={Bhattacharjee, Avishek and Banerjee, Samik and Das, Sukhendu},  
   booktitle = {The European Conference on Computer Vision (ECCV) Workshops},  
