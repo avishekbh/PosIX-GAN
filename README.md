@@ -25,3 +25,7 @@ Please note that the data preparation task is vital and the following steps must
 * Make sure all packages have been installed, of the correct version.
 
 * Make changes to the data loader and train functions accordingly.
+
+After above mentioned changes have been made, to start training, run:
+
+python main.py
