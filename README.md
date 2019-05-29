@@ -2,7 +2,7 @@
 The official repository for "PosIX-GAN: Generating multiple poses using GAN for Pose-Invariant Face Recognition"; GMDL (ECCVW) 2018
 
 The code has been written for python 2.7. <br />
-###Requirements: ###
+### Requirements: ###
 
 tensorflow-gpu==1.8.0 <br />
 keras==2.1.6 <br />
