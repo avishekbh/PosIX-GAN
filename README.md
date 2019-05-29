@@ -21,6 +21,6 @@ Please note that the data preparation task is vital and the following steps must
 
 * Make sure the separate set of the image data has been prepared to evaluate the PMSE loss. There should be nine separate numpy files (containing images) for each of the nine generator outputs.
 
-* Make sure all packages have been installed, of the correct version, details of which are on the GitHub page.
+* Make sure all packages have been installed, of the correct version.
 
 * Make changes to the data loader and train functions accordingly.
