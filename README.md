@@ -30,6 +30,9 @@ After above mentioned changes have been made, to start training, run:
 
 python main.py
 
+Once training has been completed, to test the model performance, run:
+
+python test.py
 
 If you are using this code for your work, please cite:
 <br />
