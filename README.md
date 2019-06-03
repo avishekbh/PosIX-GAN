@@ -6,13 +6,12 @@ The code has been written for python 2.7. <br />
 
 tensorflow-gpu==1.8.0 <br />
 keras==2.1.6 <br />
-graphviz==0.10.1 <br />
 matplotlib==2.2.4 <br />
 Pillow==6.0.0 <br />
 pydot==1.4.1 <br />
 scipy==1.2.1 <br />
 
-Also, make sure to install python-tk: sudo apt-get install python-tk
+Also, make sure to install python-tk & graphviz: sudo apt-get install python-tk graphviz
 
 Please note that the data preparation task is vital and the following steps must be followed:  
 
