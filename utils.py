@@ -3,6 +3,9 @@ import numpy as np
 import keras.backend as K
 import matplotlib.pylab as plt
 import math
+import os
+import tensorflow as tf
+
 
 def dataRescale(x):
     return x*2/255 - 1
@@ -98,7 +101,7 @@ def combine_images(generated_images):
 
 def combine_images_separate(generated_images):
     img0 = generated_images[0, :, :, :]
-    print('generated ', np.shape(img0))
+    # print('generated ', np.shape(img0))
     img1 = generated_images[1, :, :, :]
     img2 = generated_images[2, :, :, :]
     img3 = generated_images[3, :, :, :]

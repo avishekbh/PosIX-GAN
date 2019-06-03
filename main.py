@@ -1,6 +1,7 @@
 from keras import backend as k
 from scipy import misc
 from keras.preprocessing import image
+from keras.losses import mean_squared_error as loss_pmse
 from keras.datasets import cifar10
 from keras.optimizers import Adam
 import tensorflow as tf
@@ -13,17 +14,15 @@ import os
 from keras.utils import plot_model
 
 # Base Code (BEGAN) link - https://github.com/pbontrager/BEGAN-keras
-
 # As random initialization has been used for all models, and owing to size of the model itself, 
 # stop and run code again if you do not see promising results in 250 epochs. 
 # Generally, results are achieved in 50000 epochs.
 
 # Training parameters
 epochs = 1000000
-batches_per_epoch = 3
-batch_size = 15
+batches_per_epoch = 3 # Change as much as required
+batch_size = 15 # Do not change
 gamma = .5  # between 0 and 1
-
 # make images in form of (channels, col, row) as base code supoorted Theano backend
 def create_inputs_headpose():
     tr_x, tr_y, ts_x, ts_y = load_headpose()
@@ -69,9 +68,9 @@ def patchwise_mse(y_true, y_pred):
     y_pred_cl = k.permute_dimensions(y_pred, (0, 2, 3, 1))
     ch1_t, ch2_t, ch3_t = tf.split(y_true_cl, [1, 1, 1], axis=3)
     ch1_p, ch2_p, ch3_p = tf.split(y_pred_cl, [1, 1, 1], axis=3)
-    chkp = keras.losses.mse(y_true, y_pred)
+    chkp = loss_pmse(y_true, y_pred)
     kernel = [1, 11, 11, 1]
-    strides = [1, 3, 3, 1]
+    strides = [1, 5, 5, 1]
     padding = 0
     patches_true_1 = tf.extract_image_patches(ch1_t, kernel, strides, [1, 1, 1, 1], padding='SAME')
     patches_true_2 = tf.extract_image_patches(ch2_t, kernel, strides, [1, 1, 1, 1], padding='SAME')
@@ -82,12 +81,13 @@ def patchwise_mse(y_true, y_pred):
     loss_1 = 0.0
     loss_2 = 0.0
     loss_3 = 0.0
-    #The value 22 calculated from image size 64, stride 3,3 , patch size 11x11.
-    for i in range(22):
-        loss_1 = loss_1 + 0.02989 * mse(patches_true_1[0,0,i,], patches_pred_1[0,0,i])
-        loss_2 = loss_2 + 0.05870 * mse(patches_true_2[0,0,i,], patches_pred_2[0,0,i])
-        loss_3 = loss_3 + 0.01141 * mse(patches_true_3[0,0,i,], patches_pred_3[0,0,i])
-    total_loss = chkp + 0.01 * (loss_1 + loss_2 + loss_3)
+    # Use value 22 instead of 12 for setting stride to 3, 3. -> leads to slower convergence but marginally better results.
+    for i in range(12):
+        for j in range(12):
+            loss_1 = loss_1 + 0.02989 * mse(patches_true_1[0,i,j,], patches_pred_1[0,i,j])
+            loss_2 = loss_2 + 0.05870 * mse(patches_true_2[0,i,j,], patches_pred_2[0,i,j])
+            loss_3 = loss_3 + 0.01141 * mse(patches_true_3[0,i,j,], patches_pred_3[0,i,j])
+    total_loss = chkp + ((loss_1 + loss_2 + loss_3)/(12*12))
     return total_loss
 
 # Build models
