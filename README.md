@@ -1,5 +1,5 @@
 # PosIX-GAN
-The official repository for "PosIX-GAN: Generating multiple poses using GAN for Pose-Invariant Face Recognition"; GMDL (ECCVW) 2018
+The code for "PosIX-GAN: Generating multiple poses using GAN for Pose-Invariant Face Recognition"; GMDL (ECCVW) 2018
 
 The code has been written for python 2.7. <br />
 ### Requirements: ###
