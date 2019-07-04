@@ -41,8 +41,8 @@ gan = models.generator_containing_discriminator(generator, discriminator)
 
 print (gan.summary())
 
-generator.load_weights('gen_epoch800.h5') # load weights of the generator model
-discriminator.load_weights('disc_epoch800.h5') # load weights of the discriminator model
+generator.load_weights('gen_epoch.h5') # load weights of the generator model
+discriminator.load_weights('disc_epoch.h5') # load weights of the discriminator model
 gan = models.generator_containing_discriminator(generator, discriminator)
 tsImages, y_true = create_inputs_headpose()
 print("reached here")
